@@ -30,17 +30,9 @@ exports.createPost = async(req, res)=>{
     }
 }
 //* get Post
-exports.getPost = async(req,res)=>{
+exports.getAllPost = async(req,res)=>{
     try{
-        const {id} = req.params;
-        if(!id){
-            return res.status(400).json({
-                success: false,
-                message: "Invalid id"
-            })
-
-        }
-        const findAllPost = await Post.find({id});
+        const findAllPost = await Post.find() .populate('comments') .populate('likes'). exec();
         res.status(200).json({
             success: true,
             message: "Post Fetch successfully",

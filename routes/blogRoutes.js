@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 //* import controllers
-const {createComment, getCommentByID} = require('../controllers/commentController');
-const {createPost, getPost} = require('../controllers/postController')
+const {createComment} = require('../controllers/commentController');
+const {createPost, getAllPost} = require('../controllers/postController')
+const {likePost, unlikePost} = require('../controllers/likeController');
 
 
 //* map Api route
 router.post('/comment/create', createComment);
-router.get('/comment/:id', getCommentByID);
 router.post('/create/post', createPost);
-router.get('/post/:id', getPost);
+router.get('/post/getPost', getAllPost);
+router.post('/like/likes', likePost);
+router.post('/like/unlike', unlikePost);
 
 //* export router
 module.exports = router;
